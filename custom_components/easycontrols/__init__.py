@@ -85,6 +85,9 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
     if is_coordinator_exists(hass, config_entry.data[CONF_MAC]):
         coordinator = get_coordinator(hass, config_entry.data[CONF_MAC])
         coordinator.unload()
+        # Remove the disposed coordinator so a reload recreates a fresh one
+        # instead of reusing this dead instance (which would never poll again).
+        del hass.data[DOMAIN][DATA_COORDINATOR][config_entry.data[CONF_MAC]]
 
     await hass.config_entries.async_forward_entry_unload(config_entry, "fan")
     await hass.config_entries.async_forward_entry_unload(config_entry, "sensor")
