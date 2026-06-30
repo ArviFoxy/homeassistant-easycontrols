@@ -78,6 +78,10 @@ The integration adds the following entities and services to Home Assistant:
   - Additional computed sensors which values are not provided by the ventilation unit:
     - Airflow rate (approximately value)
     - Heat recovery efficiency (based on: https://www.engineeringtoolbox.com/heat-recovery-efficiency-d_201.html)
+- **Numbers** (bypass configuration, writable)
+  - Bypass room temperature threshold (`v01035`, 10–40 °C)
+  - Bypass minimum outdoor temperature (`v01036`, 5–20 °C)
+  - Bypass season window — from day / month, to day / month (`v02120` / `v02121` / `v02128` / `v02129`)
 - **Services**
   - `easycontrols.party_mode`
 
